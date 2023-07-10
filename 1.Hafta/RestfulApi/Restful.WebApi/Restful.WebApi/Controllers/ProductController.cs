@@ -114,7 +114,7 @@ namespace Restful.WebApi.Controllers
         [HttpGet("list")]
         public IActionResult GetProductsByName(string name)
         {
-            var filteredProduct = products.Where(p => p.Name.Contains(name)).ToList(); //
+            var filteredProduct = products.Where(p => p.Name.Contains(name)).ToList(); // Burada yazılan harfler her hangi bir üründe geçiyorsa listelenir.
             return Ok(filteredProduct);
         }
 
@@ -127,16 +127,16 @@ namespace Restful.WebApi.Controllers
             {
                 case "name":
                     sortedProducts = sortDirection == "desc" ? products.OrderByDescending(p => p.Name).AsQueryable() : products.OrderBy(p => p.Name).AsQueryable();
-                    break;
+                    break; // İsme göre ister A->Z ister Z->A ya sıralama sorgusu.
                 case "price":
                     sortedProducts = sortDirection == "desc" ? products.OrderByDescending(p => p.Price).AsQueryable() : products.OrderBy(p => p.Price).AsQueryable();
-                    break;
+                    break; // Fiyata göre sıralama
                 default:
                     sortedProducts = products.AsQueryable();
                     break;
             }
 
-            return Ok(sortedProducts.ToList());
+            return Ok(sortedProducts.ToList()); // Liste olarak döndürme
         }
     }
 }
