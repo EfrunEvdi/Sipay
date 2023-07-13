@@ -11,11 +11,11 @@ namespace Restful.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private List<Product> products;
 
-        public PersonController()
+        public ProductController()
         {
             products = new();
             products.Add(new Product { ID = 1, Category = "Kalem", Name = "Kalem 1", Barcod = 123, Price = 100 });
@@ -27,7 +27,7 @@ namespace Restful.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetProduct()
+        public IActionResult ProductList()
         {
             if (products == null)
             {
@@ -61,7 +61,7 @@ namespace Restful.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Product product)
+        public IActionResult UpdateProduct(int id, [FromBody] Product product)
         {
             var productValue = products.FirstOrDefault(x => x.ID == id);
 
@@ -78,8 +78,8 @@ namespace Restful.WebApi.Controllers
         }
 
 
-        [HttpPatch("{id}")] // Kişi Kısmi Güncelleme (Patch)
-        public IActionResult PatchPerson(int id, [FromBody] Product product)
+        [HttpPatch("{id}")] // Ürünü Kısmi Güncelleme (Patch)
+        public IActionResult PatchProduct(int id, [FromBody] Product product)
         {
             var productValue = products.FirstOrDefault(x => x.ID == id);
 
@@ -95,7 +95,7 @@ namespace Restful.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePerson(int id)
+        public IActionResult DeleteProduct(int id)
         {
             var productValue = products.FirstOrDefault(x => x.ID == id);
 
