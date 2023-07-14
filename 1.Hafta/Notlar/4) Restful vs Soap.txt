@@ -1,0 +1,10 @@
+Restful vs Soap
+
+
+SOAP (Simple Object Access Protocol) uygulamalar ile web servislerin bilgi aktarımını sağlayan XML tabanlı bir protokoldür. Yani web servise giden bilgi XML olarak gönderilir, web servis bu bilgiyi yorumlar ve sonucunu XML olarak geri döndürür. SOAP tabanlı bir web servisin, gönderilen XML verisini nasıl yorumlayacağının tanımlanması gerekir. Bu web servis tanımlaması WSDL standardı ile yapılır.
+
+
+Rest Servislerde İletişim Seviyesinde Güvenlik
+
+
+Genellikle bir ön çağrı yapılarak, istemci sunucuya kendisini tanıtan bir istekte bulunur. Sunucu client'a yetki vermek isterse client'ın gnderdiği bilgilere istinaden bir token oluşturur. Ve istemcinin sonraki isteklerde token içerisinde belirtilen süre boyunca bu token ile birlikte gelmesi beklenir. Token geçerli olduğu sürece sunucu istemciyi tanır ve request'lerine cevap verir.
