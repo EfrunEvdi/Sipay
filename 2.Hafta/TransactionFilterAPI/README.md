@@ -28,16 +28,15 @@ GET /api/Transaction/GetByParameter?AccountNumber=100000&ReferenceNumber=1&MinAm
 Örnek olarak, hesap numarası 100000 olan, referans numarası 1 olan, kredi işlemleri için tutarı 500 ile 1000 arasında, borç işlemleri için tutarı 5000 ile 7000 arasında, açıklamasında "Efrun" metni bulunan ve işlem tarihi 18 Temmuz 2023 ile 20 Temmuz 2023 arasında olan işlemleri getirecektir.
 
 ### IGenericRepository
-`IGenericRepository` arayüzü, belirli bir varlık türü için veri erişim katmanını soyutlamak için kullanılır. Bu arayüz, LINQ ifadelerini temel alan sorguları yürütmek için bir `Where` fonksiyonu içerir.
 ```C#
  public interface IGenericRepository<Entity> where Entity : class
     {
         IEnumerable<Entity> Where(Expression<Func<Entity, bool>> expression);
     }
 ```
+`IGenericRepository` arayüzü, belirli bir varlık türü için veri erişim katmanını soyutlamak için kullanılır. Bu arayüz, LINQ ifadelerini temel alan sorguları yürütmek için bir `Where` fonksiyonu içerir.
 
 ### GenericRepository
-`GenericRepository` sınıfı, farklı varlık türleri için tekrar kullanılabilir bir veri erişim katmanıdır.
 ```C#
   public class GenericRepository<Entity> : IGenericRepository<Entity> where Entity : BaseModel
     {
@@ -54,7 +53,8 @@ GET /api/Transaction/GetByParameter?AccountNumber=100000&ReferenceNumber=1&MinAm
         }
     }
 ```
-## Kullanım
+`GenericRepository` sınıfı, farklı varlık türleri için tekrar kullanılabilir bir veri erişim katmanıdır. IGenericRepository arayüzünden türetilir ve veritabanı bağlantısı için TransactionFilterAPIDBContext kullanır. Where metodu, LINQ ifadelerine göre veritabanında filtreleme işlemlerini gerçekleştirir.
+
 ### ITransactionRepository
 ```C#
  public interface ITransactionRepository : IGenericRepository<Transaction>
@@ -62,6 +62,7 @@ GET /api/Transaction/GetByParameter?AccountNumber=100000&ReferenceNumber=1&MinAm
         IEnumerable<Transaction> GetByParameter(TransactionFilterParameters filter);
     }
 ```
+`ITransactionRepository`, `IGenericRepository` arayüzünden türetilir ve `Transaction` varlık türü için işlem metotlarını tanımlar. `GetByParameter` metodu, belirli filtre kriterlerine göre işlemleri getirmek için kullanılır.
 
 ### TransactionRepository
 ```C#
@@ -92,6 +93,7 @@ public class TransactionRepository : GenericRepository<Transaction>, ITransactio
         }
     }
 ```
+`TransactionRepository` sınıfı, `GenericRepository` sınıfından türetilir ve `ITransactionRepository` arayüzündeki metotları uygular. `GetByParameter` metodu, filtre kriterlerine göre işlemleri veritabanında sorgular ve sonuçları döndürür.
 
 ### TransactionController
 ```C#
@@ -122,3 +124,4 @@ public class TransactionRepository : GenericRepository<Transaction>, ITransactio
         }
     }
 ```
+`TransactionController`, Web API'nin HTTP taleplerini yöneten ana denetleyicisidir. `ITransactionRepository` arayüzündeki `GetByParameter` metodu ile veritabanında filtreleme işlemlerini gerçekleştirir. Gelen sonuçlar HTTP 200 OK cevabıyla döndürülür.
