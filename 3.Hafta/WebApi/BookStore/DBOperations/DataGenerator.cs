@@ -22,7 +22,7 @@ namespace BookStore.DBOperations
                 {
                     BookID = 1,
                     Title = "Lean Startup",
-                    GenreID = 1, // Personal Growth
+                    GenreID = 0, // Personal Growth
                     PageCount = 200,
                     PublishDate = new DateTime(2001, 06, 12)
 
@@ -31,7 +31,7 @@ namespace BookStore.DBOperations
                 {
                     BookID = 2,
                     Title = "Herland",
-                    GenreID = 2, // Science Fiction
+                    GenreID = 1, // Science Fiction
                     PageCount = 250,
                     PublishDate = new DateTime(2010, 05, 23)
                 },
@@ -39,7 +39,7 @@ namespace BookStore.DBOperations
                 {
                     BookID = 3,
                     Title = "Dune",
-                    GenreID = 3, // Noval
+                    GenreID = 2, // Noval
                     PageCount = 540,
                     PublishDate = new DateTime(2001, 12, 21)
                 });

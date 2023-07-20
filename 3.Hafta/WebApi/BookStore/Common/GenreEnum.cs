@@ -4,6 +4,6 @@
     {
         PersonalGrowth,
         ScienceFiction,
-        Noval
+        Noval,
     }
 }

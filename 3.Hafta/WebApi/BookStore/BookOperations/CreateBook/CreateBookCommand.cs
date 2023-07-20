@@ -1,4 +1,5 @@
-﻿using BookStore.DBOperations;
+﻿using AutoMapper;
+using BookStore.DBOperations;
 using System;
 using System.Linq;
 
@@ -8,10 +9,12 @@ namespace BookStore.BookOperations.CreateBook
     {
         public CreateBookModel Model { get; set; }
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CreateBookCommand(BookStoreDbContext context)
+        public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -22,11 +25,11 @@ namespace BookStore.BookOperations.CreateBook
             {
                 throw new InvalidOperationException("Kitap zaten mevcut.");
             }
-            book = new Book();
-            book.Title = Model.Title;
-            book.GenreID = Model.GenreID;
-            book.PageCount = Model.PageCount;
-            book.PublishDate = Model.PublishDate;
+            book = _mapper.Map<Book>(Model); // new Book();
+            //book.Title = Model.Title;
+            //book.GenreID = Model.GenreID;
+            //book.PageCount = Model.PageCount;
+            //book.PublishDate = Model.PublishDate;
 
             _context.Books.Add(book); //db eklendi save lazım
             _context.SaveChanges();
