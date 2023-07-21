@@ -6,9 +6,9 @@ namespace BookStore.BookOperations.UpdateBook
     {
         public UpdateBookCommandValidator()
         {
-            RuleFor(c => c.BookID).NotEmpty().GreaterThan(0);
-            RuleFor(c => c.Model.Title).MinimumLength(3).NotEmpty();
-            RuleFor(c => c.Model.GenreID).GreaterThan(0).LessThan(5);
+            RuleFor(x => x.BookID).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.Model.Title).MinimumLength(3).NotEmpty();
+            RuleFor(x => x.Model.GenreID).GreaterThan(0).LessThan(5);
         }
     }
 }

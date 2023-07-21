@@ -6,7 +6,7 @@ namespace BookStore.BookOperations.DeleteBook
     {
         public DeleteBookCommandValidator()
         {
-            RuleFor(c => c.BookID).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.BookID).NotEmpty().GreaterThan(0);
         }
     }
 }
