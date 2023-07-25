@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static BookStore.Application.BookOperations.Commands.UpdateBook.UpdateBookCommand;
 using Xunit;
+using AutoMapper;
 
 namespace BookStore.UnitTests.Application.BookOperations.Commands.UpdateBook
 {
@@ -22,7 +23,7 @@ namespace BookStore.UnitTests.Application.BookOperations.Commands.UpdateBook
         }
 
         [Fact]
-        public void WhenAlreadyExistBookIDIsGiven_InvalidOperationException_ShouldBeReturn()
+        public void WhenNonExistBookIDIsGiven_InvalidOperationException_ShouldBeReturn()
         {
             // Arrange 
             UpdateBookCommand command = new UpdateBookCommand(_context);
@@ -37,7 +38,7 @@ namespace BookStore.UnitTests.Application.BookOperations.Commands.UpdateBook
         {
             UpdateBookCommand command = new UpdateBookCommand(_context);
 
-            UpdateBookModel model = new UpdateBookModel() { Title = "WhenGivenBookIDinDB_Book_ShouldBeUpdate", GenreID = 2 };
+            UpdateBookModel model = new UpdateBookModel() { Title = "WhenGivenBookIDinDB_Book_ShouldBeUpdate", GenreID = 1 };
             command.Model = model;
             command.BookID = 1;
 
