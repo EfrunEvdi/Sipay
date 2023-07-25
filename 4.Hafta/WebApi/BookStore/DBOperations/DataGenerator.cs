@@ -42,7 +42,7 @@ namespace BookStore.DBOperations
                     GenreID = 1, // Personal Growth
                     PageCount = 200,
                     PublishDate = new DateTime(2001, 06, 12),
-                    AuthorId = 1
+                    AuthorID = 1
                 },
                 new Book
                 {
@@ -51,7 +51,7 @@ namespace BookStore.DBOperations
                     GenreID = 1, // Science Fiction
                     PageCount = 250,
                     PublishDate = new DateTime(2010, 05, 23),
-                    AuthorId = 2
+                    AuthorID = 2
                 },
                 new Book
                 {
@@ -60,7 +60,7 @@ namespace BookStore.DBOperations
                     GenreID = 2, // Noval
                     PageCount = 540,
                     PublishDate = new DateTime(2001, 12, 21),
-                    AuthorId = 3
+                    AuthorID = 3
                 });
 
                 context.Authors.AddRange(

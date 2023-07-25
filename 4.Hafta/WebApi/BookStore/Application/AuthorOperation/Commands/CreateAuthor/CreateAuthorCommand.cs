@@ -9,9 +9,9 @@ namespace BookStore.Application.AuthorOperation.Commands.CreateAuthor
     public class CreateAuthorCommand
     {
         public CreateAuthorModel Model { get; set; }
-        private readonly BookStoreDbContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
-        public CreateAuthorCommand(IMapper mapper, BookStoreDbContext dbContext)
+        public CreateAuthorCommand(IMapper mapper, IBookStoreDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;

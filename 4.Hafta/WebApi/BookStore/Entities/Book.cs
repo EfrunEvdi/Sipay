@@ -14,7 +14,7 @@ namespace BookStore.Entities
         public int GenreID { get; set; }
         public Genre Genre { get; set; }
 
-        public int AuthorId { get; set; }
+        public int AuthorID { get; set; }
         public Author Author { get; set; }
     }
 }
